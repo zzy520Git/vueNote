@@ -24,7 +24,7 @@
             <div class="wh" style="width: 24%">
                 <ul>
                     <li v-for="(province, index) in provinces" @click="dealProvince(index)"
-                        :ind="index" :areaId="province.id" :class="{'gray':index==provInd}">
+                        :key="index" :areaId="province.id" :class="{'gray':index==provInd}">
                         <input type="checkbox" disabled checked><span v-text="province.name"></span>
                     </li>
                 </ul>
@@ -32,7 +32,7 @@
             <div class="wh" style="width: 28%">
                 <ul>
                     <li v-for="(city, index) in citys" @click="dealCity(index)"
-                        :ind="index" :areaId="city.id" :class="{'gray':index==cityInd}">
+                        :key="index" :areaId="city.id" :class="{'gray':index==cityInd}">
                         <input type="checkbox" disabled checked><span v-text="city.name"></span>
                     </li>
                 </ul>
@@ -40,7 +40,7 @@
             <div class="wh" style="width: 42%">
                 <ul>
                     <li v-for="(town, index) in towns" @click="dealTown(index)"
-                        :ind="index" :areaId="town.id" :class="{'gray':index==townInd}">
+                        :key="index" :areaId="town.id" :class="{'gray':index==townInd}">
                         <input type="checkbox" disabled checked><span v-text="town.name"></span>
                     </li>
                 </ul>
