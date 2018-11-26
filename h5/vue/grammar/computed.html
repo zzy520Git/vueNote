@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>computed属性</title>
+    <script type="text/javascript" src="/vueNote/assets/js/vue/vue.min.js"></script>
+</head>
+<body>
+<div id="myVue">
+    <p>原始字符串: {{ message }}</p>
+    <p>计算后反转字符串: {{ reversedMessage }}</p>
+</div>
+
+<div>TODO</div>
+</body>
+</html>
+
+<script>
+    var myVue = new Vue({
+        el: '#myVue',
+        data: {
+            message: 'Runoob!'
+        },
+        //计算属性
+        computed: {
+            reversedMessage: function () {
+                return this.message.split('').reverse().join('');
+            }
+        }
+    });
+</script>

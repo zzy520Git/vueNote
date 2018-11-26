@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-bind指令</title>
+    <script type="text/javascript" src="/vueNote/assets/js/vue/vue.min.js"></script>
+</head>
+<style>
+    .class1{
+        background: #444;
+        color: #eee;
+    }
+</style>
+<body>
+<div id="app">
+    <label for="r1">修改颜色</label><input type="checkbox" v-model="class1" id="r1">
+    <br><br>
+    <div v-bind:class="{'class1': class1}">
+        v-bind:class 指令
+    </div>
+    <div :class="{'class1': class1}">
+        简写v-bind:class 指令---:class
+    </div>
+    <div>
+        <div v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }">菜鸟教程</div>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    new Vue({
+        el: '#app',
+        data:{
+            class1: false,
+            activeColor: 'red',
+            fontSize: 11
+        }
+    });
+</script>

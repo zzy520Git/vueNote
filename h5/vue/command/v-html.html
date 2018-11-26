@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-html指令</title>
+    <script type="text/javascript" src="/vueNote/assets/js/vue/vue.min.js"></script>
+</head>
+<body>
+<div id="myVue">
+    <div v-html="msg"></div>
+</div>
+
+<div>TODO</div>
+</body>
+</html>
+
+<script>
+    var myVue = new Vue({
+        el: '#myVue',
+        data: {
+            msg: '<h1>人才战略</h1>'
+        },
+        methods: {
+
+        }
+    });
+</script>

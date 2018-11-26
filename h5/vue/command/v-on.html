@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-on</title>
+    <script type="text/javascript" src="/vueNote/assets/js/vue/vue.min.js"></script>
+</head>
+<body>
+<div id="myVue">
+    <a v-on:click="doSomething" href="http://www.baidu.com">www.baidu</a><br>
+    <a @click.prevent="doSomething" href="www.baidu.com">简写@click</a>
+</div>
+
+<div>TODO</div>
+</body>
+</html>
+
+<script>
+    var myVue = new Vue({
+        el: '#myVue',
+        data: {
+        },
+        methods: {
+            doSomething: function () {
+                alert('doSomething')
+            }
+        }
+    });
+</script>

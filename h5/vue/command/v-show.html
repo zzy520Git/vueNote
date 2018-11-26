@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-show</title>
+    <script type="text/javascript" src="/vueNote/assets/js/vue/vue.min.js"></script>
+</head>
+<body>
+<div id="myVue">
+    <!-- 对于不太需要经常变化的if条件，建议使用，如果需要经常变化，可用v-show -->
+    <label for="r1">修改可见</label><input type="checkbox" v-model="seen" id="r1">
+    <br><br>
+    <p v-show="seen">现在你看到我了</p>
+</div>
+
+<div>TODO</div>
+</body>
+</html>
+
+<script>
+    var myVue = new Vue({
+        el: '#myVue',
+        data: {
+            seen:true
+        },
+        methods: {
+        }
+    });
+</script>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-model</title>
+    <script type="text/javascript" src="/vueNote/assets/js/vue/vue.min.js"></script>
+</head>
+<body>
+<div id="myVue">
+    <!-- v-model 指令用来在 input、select、text、checkbox、radio textarea等表单控件元素上创建双向数据绑定，
+    根据表单上的值，自动更新绑定的元素的值。-->
+    <label for="r1">修改颜色</label><input type="checkbox" v-model="class1" id="r1">
+    <p>{{ class1 }}</p>
+    <p>{{ message }}</p>
+    <input v-model="message">
+    <p>{{textarea}}</p>
+    <textarea v-model="textarea"></textarea>
+</div>
+
+<div>TODO</div>
+</body>
+</html>
+
+<script>
+    var myVue = new Vue({
+        el: '#myVue',
+        data: {
+            class1: true,
+            message: '',
+            textarea: ''
+        },
+        methods: {
+        }
+    });
+</script>

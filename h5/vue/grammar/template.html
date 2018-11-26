@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>template用法</title>
+    <script type="text/javascript" src="/vueNote/assets/js/vue/vue.min.js"></script>
+</head>
+<body>
+<div id="myVue">
+    <template v-if="bool">
+        <p>bool=={{bool}}</p>
+        <h1>bool=={{bool}}</h1>
+        <div>template不会显示</div>
+    </template>
+</div>
+
+<div>TODO</div>
+</body>
+</html>
+
+<script>
+    var myVue = new Vue({
+        el: '#myVue',
+        data: {
+            bool:true
+        },
+        methods: {
+        }
+    });
+</script>

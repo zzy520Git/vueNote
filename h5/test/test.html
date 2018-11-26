@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <script type="text/javascript" src="/vueNote/assets/js/vue/vue.min.js"></script>
+</head>
+<style>
+    .wh{
+        color: black;
+        height: 200px;
+        overflow: scroll;
+        display: inline-block;
+    }
+    .gray{
+        background-color: #808080;
+    }
+</style>
+<body>
+<div id="myVue">
+    <div>
+        <div><button @click="showArea" v-text="areaBtn.msg"></button></div>
+        <div v-show="areaBtn.areaShow" style="width: 700px; ">
+            <div class="wh" style="width: 24%">
+                <ul>
+                    <li v-for="(province, index) in provinces" @click="dealProvince(index)"
+                        :ind="index" :areaId="province.id" :class="{'gray':index==provInd}">
+                        <input type="checkbox" disabled checked>{{province.name}}
+                    </li>
+                </ul>
+            </div>
+            <div class="wh" style="width: 28%">
+                <ul>
+                    <li v-for="(city, index) in citys" @click="dealCity(index)"
+                        :ind="index" :areaId="city.id" :class="{'gray':index==cityInd}">
+                        <input type="checkbox" disabled checked>{{city.name}}
+                    </li>
+                </ul>
+            </div>
+            <div class="wh" style="width: 42%">
+                <ul>
+                    <li v-for="(town, index) in towns" @click="dealTown(index)"
+                        :ind="index" :areaId="town.id" :class="{'gray':index==townInd}">
+                        <input type="checkbox" disabled checked>{{town.name}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+</body>
+</html>
+
+<script>
+    var myVue = new Vue({
+        el: '#myVue',
+        data: {
+            areaBtn: {
+                msg: "显示地区",
+                areaShow:false
+            },
+            provInd: 0,
+            cityInd: 0,
+            townInd: 0,
+            citys: [],
+            towns: [],
+            provinces: [
+                {
+                    id: 1,
+                    name: '湖北',
+                    area: [
+                        {
+                            id: 100,
+                            name: '荆州',
+                            area: [
+                                {
+                                    id: 10000,
+                                    name: '石首'
+                                },
+                                {
+                                    id: 10001,
+                                    name: '公安'
+                                }
+                            ]
+                        },
+                        {
+                            id: 101,
+                            name: '武汉',
+                            area: [
+                                {
+                                    id: 10010,
+                                    name: '武昌'
+                                },
+                                {
+                                    id: 10011,
+                                    name: '汉口'
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    id: 2,
+                    name: '北京',
+                    area: [
+                        {
+                            id: 110,
+                            name: '密云区',
+                            area: [
+                                {
+                                    id: 11000,
+                                    name: '大区'
+                                },
+                                {
+                                    id: 11001,
+                                    name: '大兴'
+                                }
+                            ]
+                        },
+                        {
+                            id: 111,
+                            name: '怀柔区',
+                            area: [
+                                {
+                                    id: 11010,
+                                    name: '通州'
+                                },
+                                {
+                                    id: 11011,
+                                    name: '房山'
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        methods: {
+            showArea: function () {
+                if(this.areaBtn.areaShow) {
+                    this.areaBtn.areaShow = false;
+                    this.areaBtn.msg = "显示地区";
+                } else {
+                    this.areaBtn.areaShow = true;
+                    this.areaBtn.msg = "隐藏地区";
+                }
+            },
+            dealProvince: function (index) {
+                this.provInd = index;
+                this.citys = this.provinces[index].area;
+                this.dealCity(0);
+            },
+            dealCity: function (index) {
+                this.cityInd = index;
+                this.towns = this.citys[index].area;
+                this.dealTown(0);
+            },
+            dealTown: function (index) {
+                this.townInd = index;
+            }
+        }
+    });
+</script>

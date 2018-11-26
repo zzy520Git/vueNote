@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-if</title>
+    <script type="text/javascript" src="/vueNote/assets/js/vue/vue.min.js"></script>
+</head>
+<body>
+<div id="myVue">
+    <!-- 对于不太需要经常变化的if条件，建议使用，如果需要经常变化，可用v-show -->
+    <label for="r1">修改可见</label><input type="checkbox" v-model="seen" id="r1">
+    <br><br>
+    <p v-if="seen">现在你看到我了</p>
+    <p v-else>否则你看到我</p>
+    <br><br>
+    <div v-if="type === 'A'">
+        A
+    </div>
+    <div v-else-if="type === 'B'">
+        B
+    </div>
+    <div v-else-if="type === 'C'">
+        C
+    </div>
+    <div v-else>
+        Not A/B/C
+    </div>
+</div>
+
+<div>TODO</div>
+</body>
+</html>
+
+<script>
+    var myVue = new Vue({
+        el: '#myVue',
+        data: {
+            seen: true,
+            type: 'X'
+        },
+        methods: {
+        }
+    });
+</script>

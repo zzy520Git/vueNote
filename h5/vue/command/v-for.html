@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-for指令</title>
+    <script type="text/javascript" src="/vueNote/assets/js/vue/vue.min.js"></script>
+</head>
+<body>
+<div id="myVue">
+    <ol>
+        <li v-for="site in sites">
+            {{ site.name }}
+        </li>
+    </ol>
+    <div>
+        <ul>
+            <template v-for="site in sites">
+                <li>{{ site.name }}</li>
+                <li>--------------</li>
+            </template>
+        </ul>
+    </div>
+    <div>
+        <ul>
+            <!-- 遍历对象属性 -->
+            <li v-for="value in object">
+                {{ value }}
+            </li>
+        </ul>
+    </div>
+    <div>
+        <ul>
+            <!-- 遍历对象属性,包含索引(从0开始)和key -->
+            <!-- 也可(value, key) in object -->
+            <li v-for="(value, key, index) in object">
+                {{ index }}. {{ key }} : {{ value }}
+            </li>
+        </ul>
+    </div>
+    <div>
+        <ul>
+            <!-- 也可用于遍历整数 ，从1开始 -->
+            <li v-for="n in 10">
+                {{ n }}
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div>TODO</div>
+</body>
+</html>
+
+<script>
+    var myVue = new Vue({
+        el: '#myVue',
+        data: {
+            sites: [
+                { name: 'Runoob' },
+                { name: 'Google' },
+                { name: 'Taobao' }
+            ],
+            object: {
+                name: '菜鸟教程',
+                url: 'http://www.runoob.com',
+                slogan: '学的不仅是技术，更是梦想！'
+            }
+        },
+        methods: {
+
+        }
+    });
+</script>
