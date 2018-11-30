@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>main</title>
+    <link type="text/css" href="/vueNote/assets/css/main.css" rel="stylesheet"/>
+    <link type="text/css" href="/vueNote/assets/css/bootstrap/bootstrap-datetimepicker.min.css" rel="stylesheet"/>
+    <script type="text/javascript" src="/vueNote/assets/js/main.js"></script>
+    <script type="text/javascript" src="/vueNote/assets/js/bootstrap/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="/vueNote/assets/js/bootstrap/bootstrap-datetimepicker.zh-CN.js"></script>
+    <style>
+        .xs-width{
+            width: 180px;
+        }
+        .sm-width{
+            width: 360px;
+        }
+        .md-width{
+            width: 480px;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+<div id="tab">
+    <form role="form" action="" method="post" class="form-horizontal">
+        <div class="form-group">
+            <div class="col-md-6">
+                <label class="control-label col-md-4 col-sm-12">
+                    工业店铺名称：
+                </label>
+                <div class="col-md-8 col-xs-12 sm-width">
+                    <select class="form-control" id="venderId">
+                        <option>测试店铺</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-6">
+                <label class="control-label col-md-4 col-sm-12">
+                    发豆池选择：
+                </label>
+                <div class="col-md-8 col-xs-12 xs-width">
+                    <select class="form-control">
+                        <option>商家豆池发放</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-6">
+                <label class="control-label col-md-4 col-sm-12">
+                    活动名称：
+                </label>
+                <div class="col-md-8 col-xs-12 sm-width">
+                    <input type="text" placeholder="输入活动名称" name="name" id="name" value="$act.name" class="form-control col-md-12 col-xs-12"/>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-6">
+                <label class="control-label col-md-4 col-sm-12">
+                    活动报名时间：
+                </label>
+                <div class="col-md-8" style="white-space: nowrap" style="display: inline-block">
+                     <span class="input-icon input-icon-right " >
+                        <input type="text" id="startApplyPicker" name="startApplyPicker" class="xs-width form-control"
+                               value="" style="display: inline-block">
+                        <i class="icon-calendar green" style="display: inline-block"></i>
+                    </span>
+                    <label class="control-label" style="display: inline-block">至</label>
+                    <span class="input-icon input-icon-right " style="display: inline-block">
+                        <input type="text" id="endApplyPicker" name="endApplyPicker" class="xs-width form-control"
+                               value="">
+                        <i class="icon-calendar green"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>
+</div>
+
+<div>TODO</div>
+<script>
+    var vm = new Vue({
+        el: '#box',
+        data: {
+            ta:'她是A',
+            tb:'她是B'
+        },
+        methods: {
+            func:function () {
+                var temp = this.ta;
+                this.ta = this.tb;
+                this.tb = temp;
+            }
+        }
+    });
+</script>
+</body>
+</html>

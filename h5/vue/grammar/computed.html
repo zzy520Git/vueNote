@@ -25,6 +25,16 @@
         computed: {
             reversedMessage: function () {
                 return this.message.split('').reverse().join('');
+            },
+            getset:{
+                //getter
+                get:function () {
+                    return this.message;
+                },
+                //setter
+                set:function (newVal) {
+                    console.log(newVal);
+                }
             }
         }
     });

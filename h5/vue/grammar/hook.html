@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>钩子函数</title>
+    <script type="text/javascript" src="/vueNote/assets/js/vue/vue.min.js"></script>
+</head>
+<body>
+<div id="myVue">
+    <span>钩子函数：生命周期{{a}}</span>
+</div>
+
+<div>TODO</div>
+</body>
+</html>
+
+<script>
+    var myVue = new Vue({
+        el: '#myVue',
+        data: {
+            a:666
+        },
+        methods: {
+        },
+        beforeCreate:function(){
+            console.log("beforeCreate");
+        },
+        created:function () {
+            //this指myVue对象
+            console.log("created" + this.a);
+            //一般在这初始渲染
+        },
+        mounted:function () {
+            //或者一般在这初始渲染
+            console.log("mounted");
+        },
+        updated:function () {
+            console.log("updated");
+        },
+        beforeDestroy:function () {
+            //难观察
+            console.log("beforeDestroy");
+        },
+        destroyed:function () {
+            //难观察
+            console.log("destroyed");
+        }
+    });
+    document.onclick=function () {
+        alert(1);
+        myVue.a = 888;
+        myVue = null;
+    }
+</script>

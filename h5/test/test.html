@@ -17,7 +17,7 @@
     }
 </style>
 <body>
-<div id="myVue">
+<div id="box">
     <div>
         <div><button @click="showArea" v-text="areaBtn.msg"></button></div>
         <div v-show="areaBtn.areaShow" style="width: 700px; ">
@@ -54,8 +54,8 @@
 </html>
 
 <script>
-    var myVue = new Vue({
-        el: '#myVue',
+    var vm = new Vue({
+        el: '#box',
         data: {
             areaBtn: {
                 msg: "显示地区",
