@@ -12,7 +12,8 @@
     <label for="r1">修改颜色</label><input type="checkbox" v-model="class1" id="r1">
     <p>{{ class1 }}</p>
     <p>{{ message }}</p>
-    <input v-model="message">
+    <!-- 自动去掉首尾空格 -->
+    <input v-model.trim="message">
     <p>{{textarea}}</p>
     <textarea v-model="textarea"></textarea>
 </div>
