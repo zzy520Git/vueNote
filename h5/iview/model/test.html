@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>iview示例</title>
+    <link type="text/css" href="/vueNote/assets/css/main.css" rel="stylesheet"/>
+    <link type="text/css" href="/vueNote/assets/js/iview/styles/iview.css" rel="stylesheet"/>
+    <script type="text/javascript" src="/vueNote/assets/js/main.js"></script>
+    <script type="text/javascript" src="/vueNote/assets/js/iview/iview.min.js"></script>
+</head>
+<body>
+<div id="box">
+    <div style="width: 840px">
+        <form method="post" class="form-horizontal" role="form" action="">
+            <div class="form-group">
+                <div class="col-md-12">
+                    <label for="note" class="control-label col-md-2 col-sm-12">
+                        个人说明：
+                    </label>
+                    <div class="col-md-6 col-xs-12">
+                        <input type="text" placeholder="请填写个人说明" name="note" id="note"
+                               v-model.trim="person.note" class="col-md-12 col-xs-12  form-control"/>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <label for="username" class="control-label col-md-2 col-sm-12">
+                        用户名：
+                    </label>
+                    <div class="col-md-4 col-xs-12">
+                        <input type="text" name="username" id="username" placeholder="请填写用户名"
+                               v-model="person.username" class="col-md-12 col-xs-12  form-control"/>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <label for="password" class="control-label col-md-2 col-sm-12">
+                        密码：
+                    </label>
+                    <div class="col-md-4 col-xs-12">
+                        <input type="password" name="password" id="password" placeholder="请填写密码"
+                               v-model="person.password" class="col-md-12 col-xs-12  form-control"/>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <label for="countryId" class="control-label col-md-2 col-sm-12">
+                        国家：
+                    </label>
+                    <div class="col-md-4 col-xs-12">
+                        <select v-model="person.countryId" name="countryId" id="countryId" class="col-md-12 col-xs-12  form-control">
+                            <option v-for="c in countrys" :value="c.id" :key="c.id" v-text="c.name"></option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <label class="control-label col-md-2 col-sm-12">
+                        爱好：
+                    </label>
+                    <div class="col-md-6 col-xs-12">
+                        <label v-for="(hb, index) in hobbys" :key="index" style="margin-right: 10px">
+                            <input type="checkbox" v-model="person.hobby" :name="'hobby'+index"
+                                   :id="'hobby'+index" :value="hb" style="cursor: pointer">
+                            <label :for="'hobby'+index" v-text="hb"></label>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <label class="control-label col-md-2 col-sm-12">
+                        性别：
+                    </label>
+                    <div class="col-md-4 col-xs-12">
+                        <label v-for="(s, index) in sexes" :key="index" style="margin-right: 10px">
+                            <input type="radio" v-model="person.sex" :name="'sex'+index"
+                                   :id="'sex'+index" :value="s" style="cursor: pointer">
+                            <label :for="'sex'+index" v-text="s"></label>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <label class="control-label col-md-2 col-sm-12">
+                        生日：
+                    </label>
+                    <div class="col-md-4 col-xs-12">
+                        <date-picker type="datetime" placeholder="请选择" v-model="person.birth" placement="top"></date-picker>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <label class="control-label col-md-2 col-sm-12">
+                        就业日期：
+                    </label>
+                    <div class="col-md-6 col-xs-12">
+                        <date-picker type="datetimerange" placeholder="请选择日期区间" style="width: 100%"
+                                     v-model="person.workdate" ></date-picker>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <label class="control-label col-md-2 col-sm-12">
+                        去过的城市：
+                    </label>
+                    <div class="col-md-4 col-xs-12">
+                        <tree :data="person.treeCity" show-checkbox></tree>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <label class="control-label col-md-2 col-sm-12">
+                        附件上传：
+                    </label>
+                    <div class="col-md-4 col-xs-12">
+                        <upload action="https://jsonplaceholder.typicode.com/posts/" name="file"
+                                :before-upload="beforeUpload"
+                                :on-success="successUpload"
+                                :on-error="errorUpload"
+                                :show-upload-list="true"
+                                :default-file-list="person.testFiles"
+                                style="width: 50%;display: inline-block">
+                            <i-button icon="ios-cloud-upload-outline">上传</i-button>
+                        </upload>
+                        <a v-for="(file,index) in person.files" :href="file" v-text="'附件'+(index+1)" style="margin-right: 10px"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <label class="control-label col-md-2 col-sm-12">
+                        图片上传：
+                    </label>
+                    <div class="col-md-4 col-xs-12">
+                        <upload action="https://jsonplaceholder.typicode.com/posts/"
+                                style="width: 50%;display: inline-block">
+                            <i-button icon="ios-cloud-upload-outline">上传</i-button>
+                        </upload>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <label for="description" class="control-label col-md-2 col-sm-12">
+                        描述：
+                    </label>
+                    <div class="col-md-6 col-xs-12">
+                        <textarea name="description" id="description" cols="25" rows="5"
+                                  v-model="person.description" class="col-md-12 col-xs-12  form-control"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <label class="col-md-3">
+                    </label>
+                    <div class="col-md-4 col-xs-12">
+                        <input type="button" value="新增" @click="addPerson" class="btn btn-primary"/>
+                        <label class="col-md-1" style="float: none"></label>
+                        <input type="reset" value="重置" class="btn" @click="reset"/>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <modal
+                v-model="confirmModal"
+                @on-ok="okAdd"
+                @on-cancel="cancelAdd">
+            <p>确认提交吗？</p>
+        </modal>
+    </div>
+</div>
+<script>
+    var vm = new Vue({
+        el: '#box',
+        data: {
+            person: {
+                note:'',
+                username: '',
+                password: '',
+                description:'',
+                countryId:'',
+                hobby:['游戏','旅游'],
+                sex:'',
+                //birth是一个Date类型
+                birth:'',
+                //workdate是一个数组，包含两个Date
+                workdate:'',
+                files:['https://icarusion.gitee.io/iview/e1cf12c07bf6458992569e67927d767e.png','//jd.com'],
+                testFiles:[
+                    {name:'abc.png',url:'https://icarusion.gitee.io/iview/e1cf12c07bf6458992569e67927d767e.png'},
+                    {name:'test.link',url:'//jd.com'}
+                ],
+                treeCity:[
+                    {
+                        title: '中国',
+                        expand: true,
+                        //代表选中
+                        selected: true,
+                        children: [
+                            {
+                                title: '湖北省',
+                                expand: true,
+                                children: [
+                                    {
+                                        title: '武汉市',
+                                        disabled: true
+                                    },
+                                    {
+                                        title: '宜昌市'
+                                    }
+                                ]
+                            },
+                            {
+                                title: '北京市',
+                                expand: true,
+                                children: [
+                                    {
+                                        title: '通州区',
+                                        //代表复选框勾选
+                                        checked: true
+                                    },
+                                    {
+                                        title: '怀柔区'
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            countrys:[
+                {id:0,name:'中国'},{id:1,name:'美国'},{id:2,name:'英国'},{id:3,name:'日本'}
+            ],
+            hobbys:['电影','游戏','旅游','游泳'],
+            sexes:['男', '女'],
+            confirmModal:false
+        },
+        methods: {
+            addPerson() {
+                this.confirmModal=true;
+            },
+            reset(){
+                this.person.note = '';
+                this.person.username = '';
+                this.person.password = '';
+                this.person.description = '';
+                this.person.countryId = '';
+                this.person.hobby = [];
+                this.person.sex = '';
+                this.person.birth = '';
+                this.person.workdate = '';
+            },
+            okAdd () {
+                this.$Message.info('Clicked ok');
+            },
+            cancelAdd () {
+                this.$Message.info('Clicked cancel');
+            },
+            beforeUpload(file) {
+                var size = file.size;
+                console.log(size);//文件大小
+                var name = file.name;
+                console.log(name);//文件名称
+                if(name==null || name.endsWith(".zip")) {
+                    return false;
+                }
+                var type = file.type;
+                console.log(type);//文件类型image/png
+                this.$Message.warning('开始上传');
+                //return false则停止上传
+            },
+            successUpload(response, file, fileList) {
+                this.$Message.success('上传成功');
+            },
+            errorUpload(response, file, fileList) {
+                this.$Message.error('上传失败');
+            }
+        }
+    });
+</script>
+</body>
+</html>
