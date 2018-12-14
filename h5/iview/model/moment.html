@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>iview示例</title>
+    <link type="text/css" href="/vueNote/assets/css/main.css" rel="stylesheet"/>
+    <link type="text/css" href="/vueNote/assets/js/iview/styles/iview.css" rel="stylesheet"/>
+    <script type="text/javascript" src="/vueNote/assets/js/main.js"></script>
+    <script type="text/javascript" src="/vueNote/assets/js/iview/iview.min.js"></script>
+</head>
+<body>
+<div id="box">
+    <div style="width: 840px;margin-left: 10px;margin-top: 10px">
+        <form method="post" class="form-horizontal" role="form" action="">
+            <div class="form-group">
+                <div class="col-md-12">
+                    <label for="birth" class="control-label col-md-2 col-sm-12">
+                        生日：
+                    </label>
+                    <div class="col-md-4 col-xs-12">
+                        <input type="text" placeholder="YYYY-MM-DD HH:mm:ss" name="birth" id="birth"
+                               v-model.trim="birth" class="col-md-12 col-xs-12  form-control"/>
+                    </div>
+                    <div class="col-md-4 col-xs-12">
+                        <span v-text="birthText"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <label class="control-label col-md-2 col-sm-12">
+                        当前日期：
+                    </label>
+                    <div class="col-md-4 col-xs-12">
+                        <span v-text="now"></span>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    var vm = new Vue({
+        el: '#box',
+        data: {
+            birth: '1993-05-20 06:08:08',
+            now:''
+        },
+        methods: {
+        },
+        computed: {
+            birthText: function () {
+                if(this.birth!=null && this.birth.length===19) {
+                    return moment(this.birth).toDate().getTime();
+                    //或者
+                    //return moment(this.birth, 'YYYY-MM-DD HH:mm:ss').toDate().getTime();
+                } else {
+                    return "";
+                }
+            }
+        },
+        mounted:function () {
+            setInterval(function () {
+                vm.now = moment(Date.now()).format('YYYY-MM-DD HH:mm:ss');
+            },1000);
+        }
+    });
+</script>
+</body>
+</html>
